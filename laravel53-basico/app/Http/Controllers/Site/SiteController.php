@@ -24,11 +24,16 @@ class SiteController extends Controller
 		$teste = 123;
 		$teste2 = 321;
 		$teste3 = 132;
-    	return view('site.home.teste', compact('teste', 'teste2', 'teste3'));
+		
+		$title = 'Titulo teste';
+		
+		$xss = '<script>alert("Alert XSS");</script>';
+		
+    	return view('site.home.index', compact('teste', 'teste2', 'teste3', 'title', 'xss'));
     }
     
     public function contato() {
-    	return 'Pg Contato';
+    	return view('site.contact.index');
     }
     
     public function categoria($id) {
