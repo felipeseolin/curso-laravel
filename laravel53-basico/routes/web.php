@@ -11,6 +11,19 @@
 |
 */
 
+
+Route::group(['namespace' => 'Site'], function () {
+	Route::get('/categoria/{id}', 'SiteController@categoria');
+	Route::get('/categoria2/{id?}', 'SiteController@categoriaOp');
+});
+
+Route::get('/contato', 'Site\SiteController@contato');
+Route::get('/', 'Site\SiteController@index');
+
+/*
+ *
+ * Rotas de Teste
+ *
 Route::group(['prefix' => 'painel/testes', 'middleware' => 'auth'], function() {
 	Route::get('grupo1', function() {
 		return "Grupo 1";
@@ -57,7 +70,4 @@ Route::get('/contato', function (){
 Route::get('/empresa', function () {
 	return view('empresa');
 });
-
-Route::get('/', function () {
-    return redirect()->route('rota.nomeada');
-});
+*/
