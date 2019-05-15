@@ -11,6 +11,29 @@
 |
 */
 
+Route::group(['prefix' => 'painel/testes', 'middleware' => 'auth'], function() {
+	Route::get('grupo1', function() {
+		return "Grupo 1";
+	});
+	Route::get('grupo2', function() {
+		return "Grupo 2";
+	});
+	Route::get('/financeiro', function() {
+		return "Financeiro";
+	});
+	Route::get('/', function() {
+		return "Default";
+	});
+});
+
+Route::get('/categoria2/{idCat?}', function($idCat = 'default') {
+	return "Posts da categoria2 - {$idCat}";
+});
+
+Route::get('/categoria/{idCat}/nome-fixo/{prm2}', function($idCat, $prm2) {
+	return "Posts da categoria {$idCat} - {$prm2}";
+});
+
 Route::get('/nome/nome2/nome3', function () {
 	return 'Rota grande';
 })->name('rota.nomeada');
