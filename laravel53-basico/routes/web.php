@@ -12,8 +12,12 @@
 */
 
 
+Route::resource('/painel/produtos', 'Painel\ProdutoController');
+
+//Route::group(['namespace' => 'Site', 'middleware' => 'auth'], function () {
 Route::group(['namespace' => 'Site'], function () {
-	Route::get('/categoria/{id}', 'SiteController@categoria');
+	//	Route::get('/categoria/{id}', 'SiteController@categoria')->middleware('auth');
+	Route::get('/categoria/{id}', 'SiteController@categoria')->middleware('auth');
 	Route::get('/categoria2/{id?}', 'SiteController@categoriaOp');
 });
 
