@@ -139,6 +139,8 @@ class ProdutoController extends Controller {
 		*/
 		
 		// $prod = $this->product->where('number', '=' ,1);
+		
+		/*
 		$update = $this->product->where('number', 1)->update([
 			'name' => 'Nome do Produto MUDADO',
 			'number' => 123456,
@@ -151,8 +153,22 @@ class ProdutoController extends Controller {
 			return "alterado com sucesso, id: {{$prod->id}} ";
 		} else {
 			return 'falha ao alterar';
-		}
+		}*/
 		
 		//		dd($prod->name);
+		
+		
+		// DELETE
+		
+		$prod = $this->product->find(3);
+		$delete = $prod->delete();
+		
+		if ($delete) {
+			return 'Deletei mesmo!';
+		} else {
+			return 'Xiiiiiii';
+		}
+		
+		// $delete = $this->product->where('number', '4')->delete();
 	}
 }
