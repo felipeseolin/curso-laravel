@@ -3,6 +3,8 @@
 @section('content')
     <h1 class="title-pg">Listem dos produtos</h1>
 
+    <a href="{{route('produtos.create')}}" class="btn btn-primary">Cadastrar</a>
+
     <table class="table table-striped">
         <tr>
             <th>Nome</th>

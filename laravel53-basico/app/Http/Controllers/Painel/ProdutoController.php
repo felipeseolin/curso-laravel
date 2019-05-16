@@ -34,7 +34,11 @@ class ProdutoController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create () {
-		//
+		$title = 'Cadastrar Novo Produto';
+		
+		$categorys = ['eletronicos', 'moveis', 'limpeza', 'banho'];
+		
+		return view('painel.products.create', compact('title', 'categorys'));
 	}
 	
 	/**
@@ -45,6 +49,7 @@ class ProdutoController extends Controller {
 	public function store (Request $request, \App\User $user) {
 		// Não é necessário fazer
 		// $user = new \App\User();
+		return 'Cadastrando...';
 	}
 	
 	/**
