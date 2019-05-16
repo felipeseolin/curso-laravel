@@ -102,6 +102,7 @@ class ProdutoController extends Controller {
 		
 		*/
 		
+		/*
 		$insert = $this->product->create([
 			'name' => 'Nomde do Produto',
 			'number' => 123456,
@@ -115,5 +116,43 @@ class ProdutoController extends Controller {
 		} else {
 			return  'falha ao inserir';
 		}
+		*/
+		
+		// UPDATE
+		
+		$prod = $this->product->find(2);
+		/* não recomendado
+		$prod->name = 'Nome do produto MUDEI';
+		$prod->number = 23123231;
+		$prod->active = false;
+		$prod->category = 'eletronicos';
+		$prod->description = 'Descricao do produto aki';
+		$update = $prod->save();
+		*/ /*
+		$update = $prod->update([
+			'name' => 'Nome do Produto ALTERADO',
+			'number' => 123456,
+			'active' => false,
+			'category' => 'eletronicos',
+			'description' => 'Descrição do prod',
+		]);
+		*/
+		
+		// $prod = $this->product->where('number', '=' ,1);
+		$update = $this->product->where('number', 1)->update([
+			'name' => 'Nome do Produto MUDADO',
+			'number' => 123456,
+			'active' => false,
+			'category' => 'eletronicos',
+			'description' => 'Descrição do prod',
+		]);
+		
+		if ($update) {
+			return "alterado com sucesso, id: {{$prod->id}} ";
+		} else {
+			return 'falha ao alterar';
+		}
+		
+		//		dd($prod->name);
 	}
 }
