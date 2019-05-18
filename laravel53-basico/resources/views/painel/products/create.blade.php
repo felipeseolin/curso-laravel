@@ -13,35 +13,47 @@
         </div>
     @endif
 
-    <form class="form" method="post" action="{{route('produtos.store')}}">
+    @if (isset($product))
+        <form class="form" method="post" action="{{route('produtos.update', $product->id)}}">
+            {!! method_field('PUT') !!}
+    @else
+        <form class="form" method="post" action="{{route('produtos.store')}}">
+    @endif
         {{--        <input type="hidden" name="_token" value="{{csrf_token()}}">--}}
         {!! csrf_field() !!}
         <div class="form-group">
-            <input type="text" name="name" placeholder="Nome:" class="form-control" value="{{old('name')}}">
+            <input type="text" name="name" placeholder="Nome:" class="form-control"
+                   value="{{$product->name ?? old('name')}}">
         </div>
 
         <div class="form-group">
             <label>
-                <input type="checkbox" name="active" value="1">
+                <input type="checkbox" name="active" @if(isset($product) && $product->active === true) checked @endif>
                 Ativo?
             </label>
         </div>
 
         <div class="form-group">
-            <input type="text" name="number" placeholder="Numero:" class="form-control" value="{{old('number')}}">
+            <input type="text" name="number" placeholder="Numero:" class="form-control"
+                   value="{{$product->number ?? old('number')}}">
         </div>
 
         <div class="form-group">
             <select name="category" class="form-control ">
-                <option value="" selected>Escolha a Categoria</option>
+                <option value="">Escolha a Categoria</option>
                 @foreach($categorys as $category)
-                    <option value="{{$category}}">{{$category}}</option>
+                    <option value="{{$category}}"
+                            @if (isset($product) && $product->category == $category)
+
+                            selected
+                            @endif
+                    >{{$category}}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="form-group">
-            <textarea name="description" class="form-control">{{old('description')}}</textarea>
+            <textarea name="description" class="form-control">{{$product->description ?? old('description')}}</textarea>
         </div>
 
         <button class="btn btn-primary" type="submit">Enviar</button>

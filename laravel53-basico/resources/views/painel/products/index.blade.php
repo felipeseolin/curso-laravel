@@ -16,7 +16,8 @@
                 <td>{{$product->name}}</td>
                 <td>{{$product->description}}</td>
                 <td>
-                    <a href="">Editar</a>
+{{--                    <a href="{{url("/painel/produtos/{$product->id}/edit")}}">Editar</a>--}}
+                    <a href="{{route('produtos.edit', $product->id)}}">Editar</a>
                     <a href="">Deletar</a>
                 </td>
             </tr>
