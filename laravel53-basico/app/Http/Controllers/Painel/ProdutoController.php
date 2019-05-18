@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 class ProdutoController extends Controller {
 	
 	private $product;
+	private $totalPage = 3;
 	
 	public function __construct (Product $product) {
 		$this->product = $product;
@@ -26,7 +27,7 @@ class ProdutoController extends Controller {
 		
 		$title = 'Listagem dos Produtos';
 		
-		$products = $this->product->all();
+		$products = $this->product->paginate($this->totalPage);
 		
 		return view('painel.products.index', compact('products', 'title'));
 	}
@@ -99,7 +100,11 @@ class ProdutoController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show ($id) {
-		//
+		$product = $this->product->find($id);
+//        $product = $this->product->where('id', $id)->get();
+        $title = "Produto: {$product->name}";
+
+        return view('painel.products.show', compact('product', 'title'));
 	}
 	
 	/**
@@ -151,7 +156,15 @@ class ProdutoController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy ($id) {
-		//
+		$product = $this->product->find($id);
+
+		$delete = $product->delete();
+
+		if ($delete) {
+		    return redirect()->route('produtos.index');
+        } else {
+		    return redirect()->route('produtos.show', $id)->withErrors('Falha ao deletar');
+        }
 	}
 	
 	public function tests () {

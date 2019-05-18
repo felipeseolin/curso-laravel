@@ -18,9 +18,11 @@
                 <td>
 {{--                    <a href="{{url("/painel/produtos/{$product->id}/edit")}}">Editar</a>--}}
                     <a href="{{route('produtos.edit', $product->id)}}">Editar</a>
-                    <a href="">Deletar</a>
+                    <a href="{{route('produtos.show', $product->id)}}">Visualizar</a>
                 </td>
             </tr>
         @endforeach
     </table>
+
+    {!! $products->links() !!}
 @endsection
