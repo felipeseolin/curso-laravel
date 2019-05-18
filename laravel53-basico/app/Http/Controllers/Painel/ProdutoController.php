@@ -48,7 +48,13 @@ class ProdutoController extends Controller {
 	 */
 	public function store (Request $request, \App\User $user) {
 		// Não é necessário fazer
-		// $user = new \App\User();
+		// $user = new \App\User\();
+
+        // dd($request->all());
+        // dd($request->only(['name','number']));
+        // dd($request->except(['_token']));
+        // dd($request->input('name'));
+
 		return 'Cadastrando...';
 	}
 	
