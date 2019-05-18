@@ -55,6 +55,20 @@ class ProdutoController extends Controller {
         // dd($request->except(['_token']));
         // dd($request->input('name'));
 
+        // Pega todos os dados que vem do fomulario
+        $dataForm = $request->except(['_token']);
+
+        $dataForm['active'] = (!isset($dataForm['active'])) ? 0 : 1;
+
+        // Faz o cadastro
+        $insert = $this->product->insert($dataForm);
+
+        if ($insert) {
+            return redirect()->route('produtos.index');
+        } else {
+            return redirect()->back();
+        }
+
 		return 'Cadastrando...';
 	}
 	

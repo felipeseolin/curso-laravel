@@ -23,10 +23,6 @@
         </div>
 
         <div class="form-group">
-            <input type="text" name="category" placeholder="Categoria:" class="form-control">
-        </div>
-
-        <div class="form-group">
             <select name="category" class="form-control ">
                 <option value="" selected>Escolha a Categoria</option>
                 @foreach($categorys as $category)
