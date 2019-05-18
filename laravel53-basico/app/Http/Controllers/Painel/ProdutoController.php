@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Painel;
 
+use App\Http\Requests\Painel\ProductFormRequest;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -47,7 +48,8 @@ class ProdutoController extends Controller {
 	 * @param \Illuminate\Http\Request $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store (Request $request, \App\User $user) {
+//	public function store (Request $request, \App\User $user) {
+	public function store (ProductFormRequest $request) {
 		// Não é necessário fazer
 		// $user = new \App\User\();
 
@@ -67,6 +69,7 @@ class ProdutoController extends Controller {
         // Para especificar as mensagens de erro
         // $this->validate($request, $this->product->rules, $messages);
 
+        /*
         $messages = [
             'name.required' => 'O campo nome e de preenchimento obrigatorio',
             'number.numeric' => 'Precisa ser apenas numeros',
@@ -76,6 +79,7 @@ class ProdutoController extends Controller {
         if ($validate->fails()) {
             return redirect()->back()->withErrors($validate)->withInput();
         }
+        */
 
         // Faz o cadastro
         $insert = $this->product->insert($dataForm);
