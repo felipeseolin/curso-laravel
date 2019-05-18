@@ -60,6 +60,12 @@ class ProdutoController extends Controller {
 
         $dataForm['active'] = (!isset($dataForm['active'])) ? 0 : 1;
 
+        //VALIDA OS DADOS
+        $this->validate($request, $this->product->rules);
+
+        // Para especificar as mensagens de erro
+        // $this->validate($request, $this->product->rules, $messages);
+
         // Faz o cadastro
         $insert = $this->product->insert($dataForm);
 

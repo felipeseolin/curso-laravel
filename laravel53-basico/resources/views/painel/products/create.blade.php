@@ -4,11 +4,20 @@
 
     <h1 class="title-pg">Gestão de Produto</h1>
 
+
+    @if(isset($errors) && count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach($errors->all() as $error)
+                <p>{{$error}}</p>
+            @endforeach
+        </div>
+    @endif
+
     <form class="form" method="post" action="{{route('produtos.store')}}">
-{{--        <input type="hidden" name="_token" value="{{csrf_token()}}">--}}
+        {{--        <input type="hidden" name="_token" value="{{csrf_token()}}">--}}
         {!! csrf_field() !!}
         <div class="form-group">
-            <input type="text" name="name" placeholder="Nome:" class="form-control">
+            <input type="text" name="name" placeholder="Nome:" class="form-control" value="{{old('name')}}">
         </div>
 
         <div class="form-group">
@@ -19,7 +28,7 @@
         </div>
 
         <div class="form-group">
-            <input type="text" name="number" placeholder="Numero:" class="form-control">
+            <input type="text" name="number" placeholder="Numero:" class="form-control" value="{{old('number')}}">
         </div>
 
         <div class="form-group">
@@ -32,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            <textarea name="description" class="form-control"></textarea>
+            <textarea name="description" class="form-control">{{old('description')}}</textarea>
         </div>
 
         <button class="btn btn-primary" type="submit">Enviar</button>
