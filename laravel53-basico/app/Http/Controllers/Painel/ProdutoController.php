@@ -123,8 +123,26 @@ class ProdutoController extends Controller {
 	 * @param int $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update (Request $request, $id) {
-		//
+	public function update (ProductFormRequest $request, $id) {
+	    // Recupera todos os dados do formulario
+		$dataForm = $request->all();
+
+		// Recupera o item para editar
+	    $product = $this->product->find($id);
+
+	    // Verifica s o produto esta ativado
+	    $dataForm['active'] = (!isset($dataForm['active'])) ? 0 : 1;
+
+	    // Altera os itens
+		$update = $product->update($dataForm);
+
+		// Verifica se realmente editou
+        if ($update) {
+		    return redirect()->route('produtos.index');
+        } else {
+            return redirect()->route('produtos.edit', $id)->with(['errosr' => 'Falha ao editar']);
+        }
+
 	}
 	
 	/**
